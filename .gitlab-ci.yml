@@ -1,0 +1,30 @@
+variables:
+  # Variables de configuration pour l'environnement de production
+  APCU_VERSION: 5.1.21
+
+stages:
+  - deploy
+
+deploy_to_vps:
+  stage: deploy
+  image: ruby:2.7-alpine
+  before_script:
+    - apk update
+    - apk add openssh-client rsync
+  script:
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /tmp/deploy_key
+    - chmod 600 /tmp/deploy_key
+    - ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -v debian@$VPS_IP 'echo "Connexion SSH réussie"'
+    - echo "Copie des fichiers sur le VPS"
+    - rsync -avz --no-perms --omit-dir-times --exclude ".env" --exclude "storage/" --exclude "vendor/" -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no" . debian@$VPS_IP:/home/debian/discover/
+    - ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no debian@$VPS_IP  '
+      cd /home/debian/discover;
+      docker compose -f compose.prod.yaml down;
+      docker compose -f compose.prod.yaml up -d --build;
+      docker exec php_discover php artisan config:cache;
+      docker exec php_discover php artisan route:cache;
+      docker exec php_discover php artisan ziggy:generate;
+      docker exec php_discover php artisan view:cache;
+      '
+  only:
+    - main

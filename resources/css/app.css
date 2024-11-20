@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    font-family: 'Figtree', sans-serif;
+}
+.spotify-bg {
+    background: linear-gradient(135deg, #1DB954, #191414);
+}
+.spotify-button {
+    background-color: #1DB954;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.spotify-button:hover {
+    background-color: #18a749;
+}
+
+#toast-container > .toast-success {
+    background-color: #1DB954;
+    color: white;
+}
+#toast-container > .toast-error {
+    background-color: #FF5A5F;
+    color: white;
+}

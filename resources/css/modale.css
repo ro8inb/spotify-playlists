@@ -1,0 +1,15 @@
+/* resources/css/modal.css */
+
+/* Styles pour la modal */
+#playlist-modal {
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+}
+
+
+.hidden {
+    display: none;
+}
+
+.input-generate-modale {
+    @apply block w-full p-1.5  text-gray-900 bg-gray-100 placeholder-gray-500
+}

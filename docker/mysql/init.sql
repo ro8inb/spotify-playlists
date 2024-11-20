@@ -1,0 +1,3 @@
+CREATE USER 'discover'@'%' IDENTIFIED BY 'FullFist1007';
+GRANT ALL PRIVILEGES ON discover.* TO 'discover'@'%';
+FLUSH PRIVILEGES;

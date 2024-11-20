@@ -1,0 +1,57 @@
+/* Apparence commune pour les thumbs (poignées) */
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: #1DB954;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #1DB954;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+input[type="range"]::-ms-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #1DB954;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Barre de plage */
+input[type="range"] {
+    appearance: none;
+    height: 8px;
+    background-color: #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+#multi-range-container input[type="range"] {
+    background-color: transparent;
+}
+
+/* Poignées désactivées */
+input[type="range"]:disabled {
+    cursor: not-allowed;
+    background-color: #bbb;
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+    background-color: #bbb;
+}
+
+input[type="range"]:disabled::-moz-range-thumb,
+input[type="range"]:disabled::-ms-thumb {
+    background-color: #bbb;
+}
